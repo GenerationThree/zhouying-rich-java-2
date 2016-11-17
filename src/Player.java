@@ -1,3 +1,5 @@
+import com.sun.tools.javac.util.Pair;
+
 public class Player {
     private Status status;
     private Command lastExecuted;
@@ -6,10 +8,11 @@ public class Player {
         return status;
     }
 
-    public Player.Status execute(Command command) {
-        status = command.execute(this);
+    public Pair<Status, MessageType> execute(Command command) {
+        Pair<Status, MessageType> result = command.execute(this);
         lastExecuted = command;
-        return status;
+        status = result.fst;
+        return result;
     }
 
     public boolean setStatus(Status status) {
@@ -17,9 +20,10 @@ public class Player {
         return true;
     }
 
-    public Status respond(Response response) {
-        status = lastExecuted.respondWith(response);
-        return status;
+    public Pair<Status, MessageType> respond(Response response) {
+        Pair<Status, MessageType> result = lastExecuted.respondWith(response);
+        status = result.fst;
+        return result;
     }
 
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, WAIT_FOR_COMMAND}
