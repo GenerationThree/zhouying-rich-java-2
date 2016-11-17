@@ -21,7 +21,7 @@ public class SellToolCommand implements Command {
     }
 
     @Override
-    public Pair<Player.Status, Message> respondWith(Response response) {
+    public Pair<Player.Status, Message> respondWith(Player player, Response response) {
         return null;
     }
 }

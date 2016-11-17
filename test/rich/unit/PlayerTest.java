@@ -45,7 +45,7 @@ public class PlayerTest {
     public void should_end_turn_after_response() {
         Response response = mock(Response.class);
         when(command.execute(eq(player))).thenReturn(new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.NULL));
-        when(command.respondWith(eq(response))).thenReturn(new Pair<>(Player.Status.END_TURN, Message.NULL));
+        when(command.respondWith(eq(player), eq(response))).thenReturn(new Pair<>(Player.Status.END_TURN, Message.NULL));
 
         player.execute(command);
         assertThat(player.getStatus(), is(Player.Status.WAIT_FOR_RESPONSE));

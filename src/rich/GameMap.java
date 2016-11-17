@@ -3,6 +3,8 @@ package rich;
 import rich.place.Place;
 
 public class GameMap {
+    private Place starting;
+
     public Place move(Place currentPlace, int step) {
         return null;
     }
@@ -17,5 +19,9 @@ public class GameMap {
 
     public Place findByPosition(int position) {
         return null;
+    }
+
+    public Place getStarting() {
+        return starting;
     }
 }
