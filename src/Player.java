@@ -1,14 +1,22 @@
 import com.sun.tools.javac.util.Pair;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Player {
     private Status status;
     private Command lastExecuted;
     private Place currentPlace;
+    private int blockQuantity;
+    private Map<Tool, Integer> tools;
 
     public Player() {
         this.status = Status.WAIT_FOR_COMMAND;
         this.lastExecuted = null;
         this.currentPlace = null;
+        this.blockQuantity = 0;
+        this.tools = new HashMap<>();
     }
 
     public Status getStatus() {
@@ -35,6 +43,16 @@ public class Player {
 
     public Place getCurrentPlace() {
         return currentPlace;
+    }
+
+    public int getBlockQuantity() {
+        return tools.getOrDefault(Tool.Block, 0);
+    }
+
+    public boolean buyTool(Tool tool) {
+        int cur = tools.getOrDefault(tool, 0);
+        tools.put(tool, cur + 1);
+        return true;
     }
 
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
