@@ -1,3 +1,3 @@
 public enum Tool {
-    Bomb, Block
+    Bomb, Robot, Block
 }

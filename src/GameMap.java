@@ -6,4 +6,8 @@ public class GameMap {
     public Message putTool(Tool tool, int targetPosition) {
         return null;
     }
+
+    public Message robotClean(int targetPosition) {
+        return null;
+    }
 }
