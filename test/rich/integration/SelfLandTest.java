@@ -1,4 +1,4 @@
-package rich.function;
+package rich.integration;
 
 
 import com.sun.tools.javac.util.Pair;
@@ -19,12 +19,11 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ResponseOfSelfLandTest {
+public class SelfLandTest {
 
     private GameMap map;
 
     private Player player;
-    private Player noMoneyPlayer;
     private Player noMoneyUpgradePlayer;
 
     private Command roll;
@@ -44,7 +43,6 @@ public class ResponseOfSelfLandTest {
 
         player = new Player(map, GameConstant.StartMoney);
         noMoneyUpgradePlayer = new Player(map, GameConstant.FirstDistrictLandPrice);
-        noMoneyPlayer = new Player(map, 0);
 
         roll = new RollCommand(map, step);
     }

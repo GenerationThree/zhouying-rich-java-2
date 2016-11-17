@@ -102,5 +102,17 @@ public class Player {
         this.currentPlace = target;
     }
 
+    public boolean payPassFee(int passFee) {
+        if (balance >= passFee) {
+            balance -= passFee;
+            return true;
+        }
+        return false;
+    }
+
+    public void gainPassFee(int passFee) {
+        balance += passFee;
+    }
+
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
 }

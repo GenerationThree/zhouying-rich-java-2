@@ -1,4 +1,4 @@
-package rich.function;
+package rich.integration;
 
 import com.sun.tools.javac.util.Pair;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ResponseOfEmptyLandTest {
+public class EmptyLandTest {
 
     private GameMap map;
 
