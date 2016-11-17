@@ -55,5 +55,9 @@ public class Player {
         return true;
     }
 
+    public int getBombQuantity() {
+        return tools.getOrDefault(Tool.Bomb, 0);
+    }
+
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
 }

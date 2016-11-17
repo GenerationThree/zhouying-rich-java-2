@@ -45,7 +45,7 @@ public class BlockCommandTest {
     }
 
     @Test
-    public void should_wait_for_command_when_other_player_on_that_position() {
+    public void should_wait_for_command_when_other_player_already_on_target_position() {
         // player buy a block first
         player.buyTool(Tool.Block);
 
@@ -57,7 +57,7 @@ public class BlockCommandTest {
     }
 
     @Test
-    public void should_wait_for_command_when_other_tool_on_that_position() {
+    public void should_wait_for_command_when_other_tool_already_on_target_position() {
         // player buy a block first
         player.buyTool(Tool.Block);
 
