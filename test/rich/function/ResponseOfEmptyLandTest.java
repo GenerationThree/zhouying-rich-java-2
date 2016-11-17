@@ -60,10 +60,11 @@ public class ResponseOfEmptyLandTest {
         assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice / 2));
 
         assertThat(responseRet.snd, is(Message.NULL));
+        assertThat(player.getStatus(), is(Player.Status.END_TURN));
     }
 
     @Test
-    public void should_buy_land_when_response_y_but_do_not_have_enough_balance() {
+    public void should_not_buy_land_when_response_y_but_do_not_have_enough_balance() {
         Pair<Player.Status, Message> commandRet = noMoneyPlayer.execute(roll);
         assertThat(noMoneyPlayer.getStatus(), is(Player.Status.WAIT_FOR_RESPONSE));
         assertThat(commandRet.snd, is(Message.COME_TO_EMPTY_LAND));
@@ -76,6 +77,7 @@ public class ResponseOfEmptyLandTest {
         assertThat(target.getPassFee(), is(0));
 
         assertThat(responseRet.snd, is(Message.NO_ENOUGH_MONEY_TO_BUY_LAND));
+        assertThat(noMoneyPlayer.getStatus(), is(Player.Status.END_TURN));
     }
 
     @Test
@@ -92,5 +94,7 @@ public class ResponseOfEmptyLandTest {
         assertThat(target.getPassFee(), is(0));
 
         assertThat(responseRet.snd, is(Message.NULL));
+        assertThat(player.getStatus(), is(Player.Status.END_TURN));
+
     }
 }

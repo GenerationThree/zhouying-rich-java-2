@@ -80,6 +80,16 @@ public class Player {
         return false;
     }
 
+    public boolean upgradeLand(Land land) {
+        int price = land.getPrice();
+        if (balance >= price) {
+            land.upgrade();
+            balance -= price;
+            return true;
+        }
+        return false;
+    }
+
     public int getBalance() {
         return balance;
     }
