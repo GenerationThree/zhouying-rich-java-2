@@ -10,4 +10,8 @@ public class GameMap {
     public Message robotClean(int targetPosition) {
         return null;
     }
+
+    public Place findByPosition(int position) {
+        return null;
+    }
 }
