@@ -31,6 +31,7 @@ public class BombCommandTest {
         player.gainPoints(200);
         bombPosition = 3;
         bomb = new BombCommand(map, bombPosition);
+        when(map.length()).thenReturn(1);
     }
 
     @Test

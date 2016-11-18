@@ -52,6 +52,7 @@ public class Player {
         this.isBombIntoHospital = false;
         this.noPunishTimes = 0;
         this.points = 0;
+        map.addPlayer(this);
     }
 
     public Status getStatus() {
@@ -180,6 +181,14 @@ public class Player {
 
     public void gainBonus() {
         balance += GameConstant.BONUS_MONEY;
+    }
+
+    public void useBlock() {
+        tools.put(Tool.Block, tools.get(Tool.Block) - 1);
+    }
+
+    public void useBomb() {
+        tools.put(Tool.Bomb, tools.get(Tool.Bomb) - 1);
     }
 
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_TURN, WAIT_FOR_COMMAND}

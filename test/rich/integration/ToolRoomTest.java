@@ -52,7 +52,7 @@ public class ToolRoomTest {
         player.gainPoints(0);
         Pair<Player.Status, Message> commandRet = player.execute(roll);
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
-        assertThat(commandRet.snd, is(Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT));
+        assertThat(commandRet.snd, is(Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class ToolRoomTest {
         // 第五次购买, 点数不够, 自动退出
         Pair<Player.Status, Message> respondRet = player.respond(RollCommand.BuyBomb);
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
-        assertThat(respondRet.snd, is(Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT));
+        assertThat(respondRet.snd, is(Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT));
         assertThat(player.getToolQuantityAmount(), is(START_POINTS / Tool.Bomb.points()));
         assertThat(player.getCurrentPoints(), is(START_POINTS - START_POINTS / Tool.Bomb.points() * Tool.Bomb.points()));
     }

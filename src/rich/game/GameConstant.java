@@ -4,7 +4,16 @@ public class GameConstant {
     public static final int StartMoney = 10000;
 
     public static final int LAND_TOP_LEVEL = 3;
-    public static final int FirstDistrictLandPrice = 200;
+    public static final int FIRST_DISTRICT_LAND_PRICE = 200;
+    public static final int FIRST_DISTRICT_LAND_QUANTITY = 13;
+    public static final int SECOND_DISTRICT_LAND_PRICE = 200;
+    public static final int SECOND_DISTRICT_LAND_QUANTITY = 13;
+    public static final int THIRD_DISTRICT_LAND_PRICE = 500;
+    public static final int THIRD_DISTRICT_LAND_QUANTITY = 6;
+    public static final int FOURTH_DISTRICT_LAND_PRICE = 300;
+    public static final int FOURTH_DISTRICT_LAND_QUANTITY = 13;
+    public static final int FIFTH_DISTRICT_LAND_PRICE = 300;
+    public static final int FIFTH_DISTRICT_LAND_QUANTITY = 13;
 
     public static final int DAYS_IN_PRISON = 2;
     public static final int DAYS_BOMBED_INTO_HOSPITAL = 3;

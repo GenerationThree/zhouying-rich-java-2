@@ -68,7 +68,7 @@ public class RollCommand implements Command {
             return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
         }
         if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
-            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+            return new Pair<>(Player.Status.END_TURN, Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT);
         }
 
         boolean ret = player.buyTool(Tool.Bomb);
@@ -88,7 +88,7 @@ public class RollCommand implements Command {
             return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
         }
         if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
-            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+            return new Pair<>(Player.Status.END_TURN, Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT);
         }
 
         boolean ret = player.buyTool(Tool.Robot);
@@ -106,7 +106,7 @@ public class RollCommand implements Command {
             return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
         }
         if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
-            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+            return new Pair<>(Player.Status.END_TURN, Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT);
         }
 
         boolean ret = player.buyTool(Tool.Block);

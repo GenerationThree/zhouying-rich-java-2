@@ -35,14 +35,14 @@ public class SelfLandTest {
     public void before() {
         step = 1;
         starting = new Starting();
-        target = new Land(GameConstant.FirstDistrictLandPrice);
+        target = new Land(GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         map = mock(GameMap.class);
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
         player = new Player(map, GameConstant.StartMoney);
-        noMoneyUpgradePlayer = new Player(map, GameConstant.FirstDistrictLandPrice);
+        noMoneyUpgradePlayer = new Player(map, GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         roll = new RollCommand(map, step);
     }
@@ -55,12 +55,12 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.YesToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FirstDistrictLandPrice * 2));
+        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE * 2));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
         assertThat(target.getLevel(), is(1));
-        assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice));
+        assertThat(target.getPassFee(), is(GameConstant.FIRST_DISTRICT_LAND_PRICE));
 
         assertThat(responseRet.snd, is(Message.NULL));
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
@@ -78,7 +78,7 @@ public class SelfLandTest {
         assertThat(noMoneyUpgradePlayer.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(noMoneyUpgradePlayer));
-        assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice / 2));
+        assertThat(target.getPassFee(), is(GameConstant.FIRST_DISTRICT_LAND_PRICE / 2));
         assertThat(target.getLevel(), is(0));
 
         assertThat(responseRet.snd, is(Message.NO_ENOUGH_MONEY_TO_UPGRADE_LAND));
@@ -98,7 +98,7 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.LAND_ALREADY_TOP_LEVEL));
 
         assertThat(target.getOwner(), is(player));
-        assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice * 4));
+        assertThat(target.getPassFee(), is(GameConstant.FIRST_DISTRICT_LAND_PRICE * 4));
         assertThat(target.getLevel(), is(GameConstant.LAND_TOP_LEVEL));
 
     }
@@ -112,11 +112,11 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.NoToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FirstDistrictLandPrice));
+        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
-        assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice / 2));
+        assertThat(target.getPassFee(), is(GameConstant.FIRST_DISTRICT_LAND_PRICE / 2));
         assertThat(target.getLevel(), is(0));
 
         assertThat(responseRet.snd, is(Message.NULL));

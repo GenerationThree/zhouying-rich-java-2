@@ -6,13 +6,15 @@ import rich.Message;
 import rich.Player;
 import rich.Tool;
 
+import static javafx.scene.input.KeyCode.T;
+
 public class BlockCommand implements Command {
     private GameMap map;
-    private int blockPosition;
+    private int distance;
 
-    public BlockCommand(GameMap map, int blockPosition) {
+    public BlockCommand(GameMap map, int distance) {
         this.map = map;
-        this.blockPosition = blockPosition;
+        this.distance = distance;
     }
 
     @Override
@@ -21,10 +23,15 @@ public class BlockCommand implements Command {
             return new Pair<>(Player.Status.WAIT_FOR_COMMAND, Message.NO_BLOCKS_NOW);
         }
 
-//        int targetPosition = blockPosition + player.getCurrentPlace();
-        int targetPosition = 0;
+        int curPosition = map.findByPlace(player.getCurrentPlace());
+        int targetPosition = (curPosition + distance) % map.length();
+
+        if (map.canPutTool(targetPosition))
+            player.useBlock();
+
         Message message = map.putTool(Tool.Block, targetPosition);
         return new Pair<>(Player.Status.WAIT_FOR_COMMAND, message);
+
     }
 
     @Override

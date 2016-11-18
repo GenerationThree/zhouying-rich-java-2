@@ -31,6 +31,7 @@ public class BlockCommandTest {
         player.gainPoints(200);
         blockPosition = 3;
         block = new BlockCommand(map, blockPosition);
+        when(map.length()).thenReturn(1);
     }
 
     @Test

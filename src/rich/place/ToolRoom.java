@@ -12,7 +12,7 @@ public class ToolRoom extends Place {
     @Override
     public Pair<Player.Status, Message> actionTo(Player player) {
         if (player.getCurrentPoints() < CheapestTool.points()) {
-            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+            return new Pair<>(Player.Status.END_TURN, Message.NO_POINTS_BUY_ANYMORE_TOOL_EXIT);
         } else if (player.getToolQuantityAmount() >= GameConstant.MAX_TOOL_QUANTITY) {
             return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
         } else {

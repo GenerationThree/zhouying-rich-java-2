@@ -35,7 +35,7 @@ public class EmptyLandTest {
     public void before() {
         step = 1;
         starting = new Starting();
-        target = new Land(GameConstant.FirstDistrictLandPrice);
+        target = new Land(GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         map = mock(GameMap.class);
         when(map.getStarting()).thenReturn(starting);
@@ -53,11 +53,11 @@ public class EmptyLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_EMPTY_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.YesToBuy);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FirstDistrictLandPrice));
+        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
-        assertThat(target.getPassFee(), is(GameConstant.FirstDistrictLandPrice / 2));
+        assertThat(target.getPassFee(), is(GameConstant.FIRST_DISTRICT_LAND_PRICE / 2));
 
         assertThat(responseRet.snd, is(Message.NULL));
         assertThat(player.getStatus(), is(Player.Status.END_TURN));

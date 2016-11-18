@@ -35,7 +35,7 @@ public class OthersLandTest {
     public void before() {
         step = 1;
         starting = new Starting();
-        target = new Land(GameConstant.FirstDistrictLandPrice);
+        target = new Land(GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         map = mock(GameMap.class);
         when(map.getStarting()).thenReturn(starting);
