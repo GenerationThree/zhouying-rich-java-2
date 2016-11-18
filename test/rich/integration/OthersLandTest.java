@@ -42,7 +42,7 @@ public class OthersLandTest {
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
         otherPlayer = new Player(map, 0);
-        player = new Player(map, GameConstant.START_MONEY);
+        player = new Player(map, GameConstant.DEFAULT_STARTING_BALANCE);
 
         target.setOwner(otherPlayer);
 
@@ -55,7 +55,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_PAY_SUCCESSFUL));
 
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY - target.getPassFee()));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE - target.getPassFee()));
         assertThat(otherPlayer.getBalance(), is(target.getPassFee()));
     }
 
@@ -75,7 +75,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_OWNER_IN_PRISON));
 
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE));
         assertThat(otherPlayer.getBalance(), is(0));
         assertThat(otherPlayer.getWaitTimes(), is(GameConstant.DAYS_IN_PRISON));
     }
@@ -88,7 +88,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_OWNER_BOMBED_INTO_PRISON));
 
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE));
         assertThat(otherPlayer.getBalance(), is(0));
         assertThat(otherPlayer.getWaitTimes(), is(GameConstant.DAYS_BOMBED_INTO_HOSPITAL));
     }
@@ -100,7 +100,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_MASCOT));
 
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE));
         assertThat(player.canBePunished(), is(false));
         assertThat(otherPlayer.getBalance(), is(0));
     }

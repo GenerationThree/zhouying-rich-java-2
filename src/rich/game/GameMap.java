@@ -83,9 +83,9 @@ public class GameMap {
         return places.get(0);
     }
 
-    public void display() {
+    public void initialize() {
         printFirstLine();
-        printMiddle();
+        printMiddleLines();
         printLastLine();
     }
 
@@ -102,11 +102,13 @@ public class GameMap {
         System.out.print("\n");
     }
 
-    private void printMiddle() {
+    private void printMiddleLines() {
         final int MIDDLE_LINES_QUANTITY = 6;
-        String line = "$                           0";
-        for (int i = 0; i < MIDDLE_LINES_QUANTITY; ++i)
+        for (int i = 0; i < MIDDLE_LINES_QUANTITY; ++i) {
+            String line = "$                           ";
+            line += symbolOfLand((Land)places.get(29 + i));
             System.out.println(line);
+        }
     }
 
     private void printFirstLine() {
@@ -114,7 +116,7 @@ public class GameMap {
         for (int i = 0; i < PLACE_QUANTITY_OF_FIRST_LINE; ++i) {
             char symbol = 'S';
             if (places.get(i) instanceof Starting) symbol = 'S';
-            else if (places.get(i) instanceof Land) symbol = '0';
+            else if (places.get(i) instanceof Land) symbol = symbolOfLand((Land)places.get(i));
             else if (places.get(i) instanceof Hospital) symbol = 'H';
             else if (places.get(i) instanceof ToolRoom) symbol = 'T';
             System.out.print(symbol);
@@ -164,5 +166,46 @@ public class GameMap {
 
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public void showFor() {
+        printFirstLine();
+        printMiddleLines();
+        printLastLine();
+    }
+
+    private char symbolOfLand(Land land) {
+        char symbol = (char) (land.getLevel() + 48);
+        int position = findByPlace(land);
+
+        // Override by tool
+        if (isToolOn(position)) {
+            if (toolOnPosition.get(position) == Tool.Bomb)
+                symbol = '@';
+            else
+                symbol = '#';
+        }
+        // Override by player
+        if (isPlayerOn(position)) {
+            Player player = whichToShow(position);
+            String name = player.getName();
+            if (name.equals("孙小美"))
+                symbol = 'X';
+            else if (name.equals("钱夫人"))
+                symbol = 'Q';
+            else if (name.equals("阿土伯"))
+                symbol = 'A';
+            else
+                symbol = 'J';
+        }
+        return symbol;
+    }
+
+    private Player whichToShow(int position) {
+        for (Player player : players) {
+            if (player.getCurrentPlace() == findByPosition(position))
+                return player;
+        }
+        return null;
     }
 }

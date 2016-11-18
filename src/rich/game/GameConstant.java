@@ -1,7 +1,7 @@
 package rich.game;
 
 public class GameConstant {
-    public static final int START_MONEY = 10000;
+    public static final int DEFAULT_STARTING_BALANCE = 10000;
 
     public static final int LAND_TOP_LEVEL = 3;
     public static final int FIRST_DISTRICT_LAND_PRICE = 200;

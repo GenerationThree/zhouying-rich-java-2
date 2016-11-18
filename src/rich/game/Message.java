@@ -1,8 +1,15 @@
 package rich.game;
 
+import rich.command.Response;
+
 public enum Message {
 
-    COME_TO_EMPTY_LAND, COME_TO_SELF_LAND,
+    COME_TO_EMPTY_LAND{
+        @Override
+        public Response getResponse() {
+            return super.getResponse();
+        }
+    }, COME_TO_SELF_LAND,
 
     COME_TO_OTHERS_LAND_PAY_SUCCESSFUL, COME_TO_OTHERS_LAND_PAY_FAILED, COME_TO_OTHERS_LAND_WITH_MASCOT,
     COME_TO_OTHERS_LAND_WITH_OWNER_IN_PRISON, COME_TO_OTHERS_LAND_WITH_OWNER_BOMBED_INTO_PRISON,
@@ -32,5 +39,9 @@ public enum Message {
     BUY_ROBOT_SUCCESS, NO_ENOUGH_POINTS_BUY_ROBOT,
     NO_POINTS_BUY_ANYMORE_TOOL_EXIT, TOOL_QUANTITY_LIMITED_EXIT, CHOOSE_EXIT_TOOL_ROOM,
 
-    CHOOSE_MASCOT_BLESS, CHOOSE_BONUS_POINTS, CHOOSE_BONUS_MONEY, CHOOS_NO_GIFT, NULL
+    CHOOSE_MASCOT_BLESS, CHOOSE_BONUS_POINTS, CHOOSE_BONUS_MONEY, CHOOSE_NO_GIFT, NULL;
+
+    public Response getResponse() {
+        return null;
+    }
 }

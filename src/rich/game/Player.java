@@ -24,6 +24,7 @@ public class Player {
     private boolean isBombIntoHospital;
     private int noPunishTimes;
     private int points;
+    private String name;
 
     public Player() {
         this.status = Status.WAIT_FOR_COMMAND;
@@ -39,6 +40,23 @@ public class Player {
     }
 
     public Player(GameMap map, int startMoney) {
+        this.status = Status.WAIT_FOR_COMMAND;
+        this.lastExecuted = null;
+        this.currentPlace = map.getStarting();
+        this.tools = new HashMap<>();
+        this.map = map;
+        this.balance = startMoney;
+        this.lands = new ArrayList<>();
+        this.waitTimes = 0;
+        this.isInPrison = false;
+        this.isBombIntoHospital = false;
+        this.noPunishTimes = 0;
+        this.points = 0;
+        map.addPlayer(this);
+    }
+
+    public Player(GameMap map, String name, int startMoney) {
+        this.name = name;
         this.status = Status.WAIT_FOR_COMMAND;
         this.lastExecuted = null;
         this.currentPlace = map.getStarting();
@@ -188,6 +206,18 @@ public class Player {
         tools.put(Tool.Bomb, tools.get(Tool.Bomb) - 1);
     }
 
+    public void setWaitTimes(int waitTimes) {
+        this.waitTimes = waitTimes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
 
     public String query() {
@@ -211,7 +241,7 @@ public class Player {
                     break;
             }
         }
-        return "资金: $" + balance + "\n" +
+        return  "资金: $" + balance + "\n" +
                 "点数: " + points + "\n" +
                 "地产: " + "空地: " + zeroLevelAmount + "处; " +
                 "茅屋: " + oneLevelAmount + "处; " +
@@ -220,6 +250,6 @@ public class Player {
                 "道具: " +
                 "路障: " + tools.getOrDefault(Tool.Block, 0) + "个; " +
                 "炸弹: " + tools.getOrDefault(Tool.Bomb, 0) + "个; " +
-                "机器娃娃: " + tools.getOrDefault(Tool.Robot, 0) + "个\n ";
+                "机器娃娃: " + tools.getOrDefault(Tool.Robot, 0) + "个\n\n";
     }
 }

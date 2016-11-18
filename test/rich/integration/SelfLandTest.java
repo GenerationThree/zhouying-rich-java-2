@@ -41,7 +41,7 @@ public class SelfLandTest {
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
-        player = new Player(map, GameConstant.START_MONEY);
+        player = new Player(map, GameConstant.DEFAULT_STARTING_BALANCE);
         noMoneyUpgradePlayer = new Player(map, GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         roll = new RollCommand(map, step);
@@ -55,7 +55,7 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.YesToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY - GameConstant.FIRST_DISTRICT_LAND_PRICE * 2));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE - GameConstant.FIRST_DISTRICT_LAND_PRICE * 2));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
@@ -112,7 +112,7 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.NoToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.START_MONEY - GameConstant.FIRST_DISTRICT_LAND_PRICE));
+        assertThat(player.getBalance(), is(GameConstant.DEFAULT_STARTING_BALANCE - GameConstant.FIRST_DISTRICT_LAND_PRICE));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));

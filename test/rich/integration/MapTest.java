@@ -27,7 +27,7 @@ public class MapTest {
 
     @Test
     public void should_initialize_map() {
-        map.display();
+        map.initialize();
     }
 
     @Test

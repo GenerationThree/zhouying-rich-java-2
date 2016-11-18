@@ -132,7 +132,7 @@ public class RollCommand implements Command {
         return new Pair<>(Player.Status.END_TURN, Message.CHOOSE_BONUS_POINTS);
     };
 
-    public static Response GiveUpGift = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOS_NO_GIFT);
+    public static Response GiveUpGift = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOSE_NO_GIFT);
 
 }
 

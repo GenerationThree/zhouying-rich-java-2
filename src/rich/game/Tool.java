@@ -1,7 +1,5 @@
 package rich.game;
 
-import rich.game.GameConstant;
-
 public enum Tool {
     Bomb {
         @Override

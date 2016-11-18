@@ -43,7 +43,7 @@ public class ToolRoomTest {
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
-        player = new Player(map, GameConstant.START_MONEY);
+        player = new Player(map, GameConstant.DEFAULT_STARTING_BALANCE);
         roll = new RollCommand(map, step);
     }
 
