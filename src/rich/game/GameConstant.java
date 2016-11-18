@@ -13,5 +13,8 @@ public class GameConstant {
     public static final int BOMB_POINTS = 50;
     public static final int ROBOT_POINTS = 30;
     public static final int BLOCK_POINTS = 50;
+
     public static final int MAX_TOOL_QUANTITY = 10;
+    public static final int BONUS_MONEY = 2000;
+    public static final int BONUS_POINTS = 200;
 }

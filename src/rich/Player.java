@@ -167,7 +167,6 @@ public class Player {
     }
 
     public void gainPoints(int points) {
-
         this.points = points;
     }
 
@@ -177,6 +176,10 @@ public class Player {
 
     public int getToolQuantityAmount() {
         return getQuantityByKind(Tool.Block) + getQuantityByKind(Tool.Robot) + getQuantityByKind(Tool.Bomb);
+    }
+
+    public void gainBonus() {
+        balance += GameConstant.BONUS_MONEY;
     }
 
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_TURN, WAIT_FOR_COMMAND}

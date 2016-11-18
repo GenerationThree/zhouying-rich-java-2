@@ -24,7 +24,6 @@ public class ToolRoomTest {
 
     private static final int ENOUGH_POINTS = 2000000;
     private static int START_POINTS = 200;
-    private static int POINTS_CAN_ONLY_BUY_ROBOT = 40;
     private GameMap map;
 
     private Player player;

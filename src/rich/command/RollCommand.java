@@ -59,7 +59,7 @@ public class RollCommand implements Command {
 
     public static Response NoToUpgrade = player -> new Pair<>(Player.Status.END_TURN, Message.NULL);
 
-    public static Response ExitToolRoom = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOES_EXIT_TOOL_ROOM);
+    public static Response ExitToolRoom = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOSE_EXIT_TOOL_ROOM);
 
     public static Response BuyBomb = player -> {
 
@@ -116,6 +116,23 @@ public class RollCommand implements Command {
         else
             return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.NO_ENOUGH_POINTS_BUY_BLOCK);
     };
+
+    public static Response ChooseMascot = player -> {
+        player.blessed();
+        return new Pair<>(Player.Status.END_TURN, Message.CHOOSE_MASCOT_BLESS);
+    };
+
+    public static Response ChooseMoney = player -> {
+        player.gainBonus();
+        return new Pair<>(Player.Status.END_TURN, Message.CHOOSE_BONUS_MONEY);
+    };
+
+    public static Response ChoosePoints = player -> {
+        player.gainPoints(GameConstant.BONUS_POINTS);
+        return new Pair<>(Player.Status.END_TURN, Message.CHOOSE_BONUS_POINTS);
+    };
+
+    public static Response GiveUpGift = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOS_NO_GIFT);
 
 }
 
