@@ -137,7 +137,7 @@ public class Player {
     public void pauseByPrison() {
         this.waitTimes = GameConstant.DAYS_IN_PRISON;
         this.isInPrison = true;
-        status = Status.WAIT_FOR_TURN;
+//        status = Status.WAIT_FOR_TURN;
     }
 
     public int getWaitTimes() {
@@ -159,7 +159,7 @@ public class Player {
     public void pauseByBomb() {
         isBombIntoHospital = true;
         waitTimes = GameConstant.DAYS_BOMBED_INTO_HOSPITAL;
-        status = Status.WAIT_FOR_TURN;
+//        status = Status.WAIT_FOR_TURN;
     }
 
     public void blessed() {
