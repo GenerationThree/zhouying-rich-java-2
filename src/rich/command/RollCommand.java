@@ -1,10 +1,10 @@
 package rich.command;
 
 import com.sun.tools.javac.util.Pair;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
-import rich.Tool;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
+import rich.game.Tool;
 import rich.game.GameConstant;
 import rich.place.Land;
 import rich.place.Place;
@@ -25,7 +25,7 @@ public class RollCommand implements Command {
         player.moveTo(target);
         return target.actionTo(player);
 
-//        return new Pair<>(rich.Player.Status.WAIT_FOR_RESPONSE, rich.Message.NULL);
+//        return new Pair<>(rich.game.Player.Status.WAIT_FOR_RESPONSE, rich.game.Message.NULL);
     }
 
     @Override

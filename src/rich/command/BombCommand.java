@@ -1,10 +1,10 @@
 package rich.command;
 
 import com.sun.tools.javac.util.Pair;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
-import rich.Tool;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
+import rich.game.Tool;
 
 public class BombCommand implements Command {
     private GameMap map;

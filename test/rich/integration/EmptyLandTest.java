@@ -3,9 +3,9 @@ package rich.integration;
 import com.sun.tools.javac.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
 import rich.command.Command;
 import rich.command.RollCommand;
 import rich.game.GameConstant;
@@ -40,7 +40,7 @@ public class EmptyLandTest {
         map = mock(GameMap.class);
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
-        player = new Player(map, GameConstant.StartMoney);
+        player = new Player(map, GameConstant.START_MONEY);
         noMoneyPlayer = new Player(map, 0);
 
         roll = new RollCommand(map, step);
@@ -53,7 +53,7 @@ public class EmptyLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_EMPTY_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.YesToBuy);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY - GameConstant.FIRST_DISTRICT_LAND_PRICE));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
@@ -87,7 +87,7 @@ public class EmptyLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_EMPTY_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.NoToBuy);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
         assertThat(player.getLands().size(), is(0));
 
         assertThat(target.getOwner(), is(nullValue()));

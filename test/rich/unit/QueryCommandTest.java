@@ -1,8 +1,8 @@
 package rich.unit;
 
 import com.sun.tools.javac.util.Pair;
-import rich.Message;
-import rich.Player;
+import rich.game.Message;
+import rich.game.Player;
 import rich.command.Command;
 import rich.command.QueryCommand;
 import org.junit.Before;

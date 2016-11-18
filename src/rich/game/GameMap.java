@@ -1,6 +1,5 @@
-package rich;
+package rich.game;
 
-import rich.game.GameConstant;
 import rich.place.*;
 
 import java.util.ArrayList;
@@ -61,8 +60,14 @@ public class GameMap {
         return toolOnPosition.getOrDefault(targetPosition, null) != null;
     }
 
-    public Message robotClean(int targetPosition) {
-        return null;
+    public Message robotClean(int curPosition) {
+        for (int i = 0; i < GameConstant.ROBOT_CLEAN_RANGE; ++i) {
+            int targetPosition = (curPosition + i) % length();
+            if (isToolOn(targetPosition)) {
+                toolOnPosition.remove(targetPosition);
+            }
+        }
+        return Message.ROBOT_CLEAN_SUCCESS;
     }
 
     public Place findByPosition(int position) {

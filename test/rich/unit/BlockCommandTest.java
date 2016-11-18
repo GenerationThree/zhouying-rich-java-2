@@ -1,10 +1,10 @@
 package rich.unit;
 
 import com.sun.tools.javac.util.Pair;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
-import rich.Tool;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
+import rich.game.Tool;
 import rich.command.BlockCommand;
 import rich.command.Command;
 import org.junit.Before;

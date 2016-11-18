@@ -4,9 +4,9 @@ package rich.integration;
 import com.sun.tools.javac.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
 import rich.command.Command;
 import rich.command.RollCommand;
 import rich.game.GameConstant;
@@ -42,7 +42,7 @@ public class OthersLandTest {
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
         otherPlayer = new Player(map, 0);
-        player = new Player(map, GameConstant.StartMoney);
+        player = new Player(map, GameConstant.START_MONEY);
 
         target.setOwner(otherPlayer);
 
@@ -55,7 +55,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_PAY_SUCCESSFUL));
 
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - target.getPassFee()));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY - target.getPassFee()));
         assertThat(otherPlayer.getBalance(), is(target.getPassFee()));
     }
 
@@ -75,7 +75,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_OWNER_IN_PRISON));
 
-        assertThat(player.getBalance(), is(GameConstant.StartMoney));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
         assertThat(otherPlayer.getBalance(), is(0));
         assertThat(otherPlayer.getWaitTimes(), is(GameConstant.DAYS_IN_PRISON));
     }
@@ -88,7 +88,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_OWNER_BOMBED_INTO_PRISON));
 
-        assertThat(player.getBalance(), is(GameConstant.StartMoney));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
         assertThat(otherPlayer.getBalance(), is(0));
         assertThat(otherPlayer.getWaitTimes(), is(GameConstant.DAYS_BOMBED_INTO_HOSPITAL));
     }
@@ -100,7 +100,7 @@ public class OthersLandTest {
         assertThat(player.getStatus(), is(Player.Status.END_TURN));
         assertThat(commandRet.snd, is(Message.COME_TO_OTHERS_LAND_WITH_MASCOT));
 
-        assertThat(player.getBalance(), is(GameConstant.StartMoney));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY));
         assertThat(player.canBePunished(), is(false));
         assertThat(otherPlayer.getBalance(), is(0));
     }

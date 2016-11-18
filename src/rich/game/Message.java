@@ -1,4 +1,4 @@
-package rich;
+package rich.game;
 
 public enum Message {
 

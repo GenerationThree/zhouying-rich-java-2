@@ -1,8 +1,8 @@
 package rich.command;
 
 import com.sun.tools.javac.util.Pair;
-import rich.Message;
-import rich.Player;
+import rich.game.Message;
+import rich.game.Player;
 
 public class HelpCommand implements Command {
     @Override

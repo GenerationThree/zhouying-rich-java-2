@@ -1,9 +1,9 @@
 package rich.command;
 
 import com.sun.tools.javac.util.Pair;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
 import rich.place.Land;
 import rich.place.Place;
 

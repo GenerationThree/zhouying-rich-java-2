@@ -1,8 +1,8 @@
 package rich.place;
 
 import com.sun.tools.javac.util.Pair;
-import rich.Message;
-import rich.Player;
+import rich.game.Message;
+import rich.game.Player;
 import rich.game.GameConstant;
 
 public class Land extends Place {

@@ -1,9 +1,9 @@
 package rich.unit;
 
 import com.sun.tools.javac.util.Pair;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
 import rich.command.Command;
 import rich.command.SellLandCommand;
 import org.junit.Before;

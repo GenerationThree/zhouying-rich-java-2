@@ -1,9 +1,8 @@
-package rich;
+package rich.game;
 
 import com.sun.tools.javac.util.Pair;
 import rich.command.Command;
 import rich.command.Response;
-import rich.game.GameConstant;
 import rich.place.Land;
 import rich.place.Place;
 
@@ -138,7 +137,6 @@ public class Player {
     public void pauseByPrison() {
         this.waitTimes = GameConstant.DAYS_IN_PRISON;
         this.isInPrison = true;
-//        status = Status.WAIT_FOR_TURN;
     }
 
     public int getWaitTimes() {
@@ -160,7 +158,6 @@ public class Player {
     public void pauseByBomb() {
         isBombIntoHospital = true;
         waitTimes = GameConstant.DAYS_BOMBED_INTO_HOSPITAL;
-//        status = Status.WAIT_FOR_TURN;
     }
 
     public void blessed() {
@@ -191,5 +188,38 @@ public class Player {
         tools.put(Tool.Bomb, tools.get(Tool.Bomb) - 1);
     }
 
-    public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_TURN, WAIT_FOR_COMMAND}
+    public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
+
+    public String query() {
+        int zeroLevelAmount = 0;
+        int oneLevelAmount = 0;
+        int twoLevelAmount = 0;
+        int threeLevelAmount = 0;
+        for (Land land : lands) {
+            switch (land.getLevel()) {
+                case 0:
+                    zeroLevelAmount += 1;
+                    break;
+                case 1:
+                    oneLevelAmount += 1;
+                    break;
+                case 2:
+                    twoLevelAmount += 1;
+                    break;
+                case 3:
+                    threeLevelAmount += 1;
+                    break;
+            }
+        }
+        return "资金: $" + balance + "\n" +
+                "点数: " + points + "\n" +
+                "地产: " + "空地: " + zeroLevelAmount + "处; " +
+                "茅屋: " + oneLevelAmount + "处; " +
+                "洋房: " + twoLevelAmount + "处; " +
+                "摩天楼: " + threeLevelAmount + "处\n" +
+                "道具: " +
+                "路障: " + tools.getOrDefault(Tool.Block, 0) + "个; " +
+                "炸弹: " + tools.getOrDefault(Tool.Bomb, 0) + "个; " +
+                "机器娃娃: " + tools.getOrDefault(Tool.Robot, 0) + "个\n ";
+    }
 }

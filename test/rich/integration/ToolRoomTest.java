@@ -3,10 +3,10 @@ package rich.integration;
 import com.sun.tools.javac.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
-import rich.Tool;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
+import rich.game.Tool;
 import rich.command.Command;
 import rich.command.RollCommand;
 import rich.game.GameConstant;
@@ -43,7 +43,7 @@ public class ToolRoomTest {
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
-        player = new Player(map, GameConstant.StartMoney);
+        player = new Player(map, GameConstant.START_MONEY);
         roll = new RollCommand(map, step);
     }
 

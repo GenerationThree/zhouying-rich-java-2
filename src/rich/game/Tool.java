@@ -1,4 +1,4 @@
-package rich;
+package rich.game;
 
 import rich.game.GameConstant;
 

@@ -4,9 +4,9 @@ package rich.integration;
 import com.sun.tools.javac.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import rich.GameMap;
-import rich.Message;
-import rich.Player;
+import rich.game.GameMap;
+import rich.game.Message;
+import rich.game.Player;
 import rich.command.Command;
 import rich.command.RollCommand;
 import rich.game.GameConstant;
@@ -41,7 +41,7 @@ public class SelfLandTest {
         when(map.getStarting()).thenReturn(starting);
         when(map.move(eq(starting), eq(step))).thenReturn(target);
 
-        player = new Player(map, GameConstant.StartMoney);
+        player = new Player(map, GameConstant.START_MONEY);
         noMoneyUpgradePlayer = new Player(map, GameConstant.FIRST_DISTRICT_LAND_PRICE);
 
         roll = new RollCommand(map, step);
@@ -55,7 +55,7 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.YesToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE * 2));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY - GameConstant.FIRST_DISTRICT_LAND_PRICE * 2));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));
@@ -112,7 +112,7 @@ public class SelfLandTest {
         assertThat(commandRet.snd, is(Message.COME_TO_SELF_LAND));
 
         Pair<Player.Status, Message> responseRet = player.respond(RollCommand.NoToUpgrade);
-        assertThat(player.getBalance(), is(GameConstant.StartMoney - GameConstant.FIRST_DISTRICT_LAND_PRICE));
+        assertThat(player.getBalance(), is(GameConstant.START_MONEY - GameConstant.FIRST_DISTRICT_LAND_PRICE));
         assertThat(player.getLands().size(), is(1));
 
         assertThat(target.getOwner(), is(player));

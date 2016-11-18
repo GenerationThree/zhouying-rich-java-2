@@ -1,7 +1,7 @@
 package rich.game;
 
 public class GameConstant {
-    public static final int StartMoney = 10000;
+    public static final int START_MONEY = 10000;
 
     public static final int LAND_TOP_LEVEL = 3;
     public static final int FIRST_DISTRICT_LAND_PRICE = 200;
@@ -26,4 +26,6 @@ public class GameConstant {
     public static final int MAX_TOOL_QUANTITY = 10;
     public static final int BONUS_MONEY = 2000;
     public static final int BONUS_POINTS = 200;
+
+    public static final int ROBOT_CLEAN_RANGE = 10;
 }
