@@ -28,6 +28,7 @@ public class BlockCommandTest {
     public void before() {
         map = mock(GameMap.class);
         player = new Player();
+        player.gainPoints(200);
         blockPosition = 3;
         block = new BlockCommand(map, blockPosition);
     }

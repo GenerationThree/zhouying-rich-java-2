@@ -6,7 +6,6 @@ import rich.command.Response;
 import rich.game.GameConstant;
 import rich.place.Land;
 import rich.place.Place;
-import rich.place.Prison;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +24,7 @@ public class Player {
     private boolean isInPrison;
     private boolean isBombIntoHospital;
     private int noPunishTimes;
+    private int points;
 
     public Player() {
         this.status = Status.WAIT_FOR_COMMAND;
@@ -36,6 +36,7 @@ public class Player {
         this.isInPrison = false;
         this.isBombIntoHospital = false;
         this.noPunishTimes = 0;
+        this.points = 0;
     }
 
     public Player(GameMap map, int startMoney) {
@@ -50,6 +51,7 @@ public class Player {
         this.isInPrison = false;
         this.isBombIntoHospital = false;
         this.noPunishTimes = 0;
+        this.points = 0;
     }
 
     public Status getStatus() {
@@ -74,9 +76,13 @@ public class Player {
     }
 
     public boolean buyTool(Tool tool) {
-        int cur = tools.getOrDefault(tool, 0);
-        tools.put(tool, cur + 1);
-        return true;
+        if (points >= tool.points() && getToolQuantityAmount() < GameConstant.MAX_TOOL_QUANTITY) {
+            points -= tool.points();
+            int cur = tools.getOrDefault(tool, 0);
+            tools.put(tool, cur + 1);
+            return true;
+        }
+        return false;
     }
 
     public int getQuantityByKind(Tool tool) {
@@ -158,6 +164,19 @@ public class Player {
 
     public void blessed() {
         noPunishTimes = GameConstant.DAYS_WITH_MASCOT;
+    }
+
+    public void gainPoints(int points) {
+
+        this.points = points;
+    }
+
+    public int getCurrentPoints() {
+        return points;
+    }
+
+    public int getToolQuantityAmount() {
+        return getQuantityByKind(Tool.Block) + getQuantityByKind(Tool.Robot) + getQuantityByKind(Tool.Bomb);
     }
 
     public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_TURN, WAIT_FOR_COMMAND}

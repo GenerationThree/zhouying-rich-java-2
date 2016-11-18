@@ -6,4 +6,5 @@ import rich.Player;
 
 public interface Response {
     Pair<Player.Status, Message> execute(Player player);
+//    Pair<Player.Status, Message> execute(Player player, Object[] objects);
 }

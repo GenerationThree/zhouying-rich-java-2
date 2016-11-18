@@ -27,6 +27,7 @@ public class SellToolCommandTest {
     @Test
     public void should_wait_for_command_when_sell_tool_success() {
         // first, player buy this tool
+        player.gainPoints(200);
         player.buyTool(tool);
         assertThat(player.getStatus(), is(Player.Status.WAIT_FOR_COMMAND));
         Pair<Player.Status, Message> ret = player.execute(sellTool);

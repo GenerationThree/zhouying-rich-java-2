@@ -32,6 +32,7 @@ public class RobotCommandTest {
     @Test
     public void should_wait_for_command_after_clean_the_road() {
         //player buy a robot first
+        player.gainPoints(200);
         player.buyTool(Tool.Robot);
         when(map.robotClean(anyInt())).thenReturn(Message.ROBOT_CLEAN_SUCCESS);
 

@@ -28,6 +28,7 @@ public class BombCommandTest {
     public void before() {
         map = mock(GameMap.class);
         player = new Player();
+        player.gainPoints(200);
         bombPosition = 3;
         bomb = new BombCommand(map, bombPosition);
     }

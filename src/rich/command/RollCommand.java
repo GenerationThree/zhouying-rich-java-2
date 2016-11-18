@@ -4,8 +4,11 @@ import com.sun.tools.javac.util.Pair;
 import rich.GameMap;
 import rich.Message;
 import rich.Player;
+import rich.Tool;
+import rich.game.GameConstant;
 import rich.place.Land;
 import rich.place.Place;
+import rich.place.ToolRoom;
 
 public class RollCommand implements Command {
     private GameMap map;
@@ -55,6 +58,64 @@ public class RollCommand implements Command {
     };
 
     public static Response NoToUpgrade = player -> new Pair<>(Player.Status.END_TURN, Message.NULL);
+
+    public static Response ExitToolRoom = player -> new Pair<>(Player.Status.END_TURN, Message.CHOOES_EXIT_TOOL_ROOM);
+
+    public static Response BuyBomb = player -> {
+
+        // 买之前检查, 如果点数不够买最便宜的道具或者道具已满, 直接退出
+        if (player.getToolQuantityAmount() == GameConstant.MAX_TOOL_QUANTITY) {
+            return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
+        }
+        if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
+            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+        }
+
+        boolean ret = player.buyTool(Tool.Bomb);
+
+        if (ret)
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.BUY_BOMB_SUCCESS);
+
+        else
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.NO_ENOUGH_POINTS_BUY_BOMB);
+    };
+
+
+    public static Response BuyRobot = player -> {
+
+        // 买之前检查
+        if (player.getToolQuantityAmount() == GameConstant.MAX_TOOL_QUANTITY) {
+            return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
+        }
+        if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
+            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+        }
+
+        boolean ret = player.buyTool(Tool.Robot);
+
+        if (ret)
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.BUY_ROBOT_SUCCESS);
+        else
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.NO_ENOUGH_POINTS_BUY_ROBOT);
+    };
+
+    public static Response BuyBlock = player -> {
+
+        // 买之前检查
+        if (player.getToolQuantityAmount() == GameConstant.MAX_TOOL_QUANTITY) {
+            return new Pair<>(Player.Status.END_TURN, Message.TOOL_QUANTITY_LIMITED_EXIT);
+        }
+        if (player.getCurrentPoints() < ToolRoom.CheapestTool.points()) {
+            return new Pair<>(Player.Status.END_TURN, Message.No_POINTS_BUY_ANYMORE_TOOL_EXIT);
+        }
+
+        boolean ret = player.buyTool(Tool.Block);
+
+        if (ret)
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.BUY_BLOCK_SUCCESS);
+        else
+            return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.NO_ENOUGH_POINTS_BUY_BLOCK);
+    };
 
 }
 
