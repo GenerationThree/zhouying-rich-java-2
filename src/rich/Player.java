@@ -3,8 +3,10 @@ package rich;
 import com.sun.tools.javac.util.Pair;
 import rich.command.Command;
 import rich.command.Response;
+import rich.game.GameConstant;
 import rich.place.Land;
 import rich.place.Place;
+import rich.place.Prison;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,10 @@ public class Player {
     private GameMap map;
     private int balance;
     private List<Land> lands;
+    private int waitTimes;
+    private boolean isInPrison;
+    private boolean isBombIntoHospital;
+    private int noPunishTimes;
 
     public Player() {
         this.status = Status.WAIT_FOR_COMMAND;
@@ -26,6 +32,10 @@ public class Player {
         this.currentPlace = null;
         this.tools = new HashMap<>();
         this.balance = 0;
+        this.waitTimes = 0;
+        this.isInPrison = false;
+        this.isBombIntoHospital = false;
+        this.noPunishTimes = 0;
     }
 
     public Player(GameMap map, int startMoney) {
@@ -36,6 +46,10 @@ public class Player {
         this.map = map;
         this.balance = startMoney;
         this.lands = new ArrayList<>();
+        this.waitTimes = 0;
+        this.isInPrison = false;
+        this.isBombIntoHospital = false;
+        this.noPunishTimes = 0;
     }
 
     public Status getStatus() {
@@ -114,5 +128,37 @@ public class Player {
         balance += passFee;
     }
 
-    public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_COMMAND}
+    public void pauseByPrison() {
+        this.waitTimes = GameConstant.DAYS_IN_PRISON;
+        this.isInPrison = true;
+        status = Status.WAIT_FOR_TURN;
+    }
+
+    public int getWaitTimes() {
+        return waitTimes;
+    }
+
+    public boolean isInPrison() {
+        return isInPrison;
+    }
+
+    public boolean isBombIntoHospital() {
+        return isBombIntoHospital;
+    }
+
+    public boolean canBePunished() {
+        return noPunishTimes <= 0;
+    }
+
+    public void pauseByBomb() {
+        isBombIntoHospital = true;
+        waitTimes = GameConstant.DAYS_BOMBED_INTO_HOSPITAL;
+        status = Status.WAIT_FOR_TURN;
+    }
+
+    public void blessed() {
+        noPunishTimes = GameConstant.DAYS_WITH_MASCOT;
+    }
+
+    public enum Status {WAIT_FOR_RESPONSE, END_TURN, GAME_OVER, WAIT_FOR_TURN, WAIT_FOR_COMMAND}
 }

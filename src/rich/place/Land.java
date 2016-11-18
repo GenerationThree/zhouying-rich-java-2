@@ -32,20 +32,22 @@ public class Land extends Place {
         } else if (getOwner() == null) {
             return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.COME_TO_EMPTY_LAND);
         } else {
-            int passFee = getPassFee();
-            player.payPassFee(passFee);
-            owner.gainPassFee(passFee);
-            return new Pair<>(Player.Status.END_TURN, Message.COME_TO_OTHERS_LAND_PAY_SUCCESSFUL);
+            if (owner.isInPrison()) {
+                return new Pair<>(Player.Status.END_TURN, Message.COME_TO_OTHERS_LAND_WITH_OWNER_IN_PRISON);
+            } else if (owner.isBombIntoHospital()) {
+                return new Pair<>(Player.Status.END_TURN, Message.COME_TO_OTHERS_LAND_WITH_OWNER_BOMBED_INTO_PRISON);
+            } else if (!player.canBePunished()) {
+                return new Pair<>(Player.Status.END_TURN, Message.COME_TO_OTHERS_LAND_WITH_MASCOT);
+            } else {
+                int passFee = getPassFee();
+                if (player.payPassFee(passFee)) {
+                    owner.gainPassFee(passFee);
+                    return new Pair<>(Player.Status.END_TURN, Message.COME_TO_OTHERS_LAND_PAY_SUCCESSFUL);
+                } else {
+                    return new Pair<>(Player.Status.GAME_OVER, Message.COME_TO_OTHERS_LAND_PAY_FAILED);
+                }
+            }
         }
-
-//        if (level == GameConstant.LAND_TOP_LEVEL) {
-//            return new Pair<>(Player.Status.END_TURN, Message.LAND_ALREADY_TOP_LEVEL);
-//        } else {
-//            if (getOwner() == player)
-//                return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.COME_TO_SELF_LAND);
-//            else
-//                return new Pair<>(Player.Status.WAIT_FOR_RESPONSE, Message.COME_TO_EMPTY_LAND);
-//        }
     }
 
     public int getPassFee() {
